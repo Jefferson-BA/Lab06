@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Lab06.UI.Views.PedidosView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" Padding="10" Margin="0,0,0,10" CornerRadius="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="5">
+                    <TextBlock Text="ID Cliente:"/>
+                    <TextBox Text="{Binding ClienteID, UpdateSourceTrigger=PropertyChanged}" Height="24"/>
+                    <TextBlock Text="Destinatario:" Margin="0,5,0,0"/>
+                    <TextBox Text="{Binding Destinatario, UpdateSourceTrigger=PropertyChanged}" Height="24"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="5">
+                    <TextBlock Text="ID Empleado:"/>
+                    <TextBox Text="{Binding EmpleadoID, UpdateSourceTrigger=PropertyChanged}" Height="24"/>
+                    <TextBlock Text="Ciudad Destino:" Margin="0,5,0,0"/>
+                    <TextBox Text="{Binding CiudadDestino, UpdateSourceTrigger=PropertyChanged}" Height="24"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Margin="5">
+                    <TextBlock Text="Fecha Pedido:"/>
+                    <DatePicker SelectedDate="{Binding FechaPedido}" Height="24"/>
+                    <TextBlock Text="Fecha Requerida:" Margin="0,5,0,0"/>
+                    <DatePicker SelectedDate="{Binding FechaRequerida}" Height="24"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Right">
+            <Button Content="Limpiar" Command="{Binding LimpiarCommand}" Width="80" Height="28" Margin="5" Background="#64748B" Foreground="White"/>
+            <Button Content="Guardar / Actualizar" Command="{Binding GuardarCommand}" Width="140" Height="28" Margin="5" Background="#2563EB" Foreground="White"/>
+            <Button Content="Baja Lógica" Command="{Binding EliminarCommand}" Width="110" Height="28" Margin="5" Background="#DC2626" Foreground="White"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2" ItemsSource="{Binding PedidosView}" SelectedItem="{Binding SelectedPedido}" AutoGenerateColumns="True" IsReadOnly="True" AlternatingRowBackground="#F1F5F9"/>
+    </Grid>
+</UserControl>
